@@ -17,4 +17,8 @@ export class ProductService {
       map(res => res.products)
     );
   }
+
+  getOneById(id: number): Observable<Product> {
+  return this.http.get<Product>(`${this.apiUrl}/${id}`);
+}
 }

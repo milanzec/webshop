@@ -18,9 +18,13 @@
           <span class="price">${{ product.price }}</span>
 
           <div class="actions">
-            <a [routerLink]="['/products', product.id]">
-              <button pButton type="button" label="Details" severity="secondary"></button>
-            </a>
+         <button
+  pButton
+  type="button"
+  label="Details"
+  severity="secondary"
+  [routerLink]="['/products', product.id]">
+</button>
             <button pButton type="button" label="Add to cart"></button>
           </div>
         </div>

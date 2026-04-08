@@ -1,1 +1,38 @@
-<p>product-details works!</p>
+<h1>DETAILS PAGE RADI</h1>
+
+
+<h1>DETAILS PAGE</h1>
+<p>{{ product | json }}</p>
+
+
+<!-- @if (product$) {
+  <section class="product-details">
+    <div class="product-image-wrapper">
+      <img
+        [src]="product$.images[0] || product.thumbnail"
+        [alt]="product.title"
+        class="product-image"
+      />
+    </div>
+
+    <div class="product-info">
+      <span class="category">{{ product.category }}</span>
+      <h1>{{ product.title }}</h1>
+      <p class="description">{{ product.description }}</p>
+
+      <div class="meta">
+        <span class="price">${{ product.price }}</span>
+        <span class="rating">⭐ {{ product.rating }}</span>
+      </div>
+
+      <div class="actions">
+        <button pButton type="button" label="Add to cart"></button>
+        <a routerLink="/products">
+          <button pButton type="button" label="Back to products" severity="secondary"></button>
+        </a>
+      </div>
+    </div>
+  </section>
+} @else {
+  <p>Loading product...</p>
+} -->
