@@ -1,0 +1,32 @@
+<section class="products-page">
+  <div class="products-header">
+    <h1>Products</h1>
+    <p>Browse our latest collection.</p>
+  </div>
+
+  <div class="products-grid">
+    @for (product of (products$ | async )??[]; track product.id){
+        <p-card  class="product-card">
+      <ng-template pTemplate="header">
+        <img [src]="product.thumbnail" [alt]="product.title" class="product-image" />
+      </ng-template>
+
+      <div class="product-content">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
+        <div class="product-footer">
+          <span class="price">${{ product.price }}</span>
+
+          <div class="actions">
+            <a [routerLink]="['/products', product.id]">
+              <button pButton type="button" label="Details" severity="secondary"></button>
+            </a>
+            <button pButton type="button" label="Add to cart"></button>
+          </div>
+        </div>
+      </div>
+    </p-card>
+    }
+  
+  </div>
+</section>

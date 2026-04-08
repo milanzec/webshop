@@ -1,0 +1,20 @@
+<header class="shop-header">
+  <div class="container header-inner">
+    <a routerLink="/" class="logo">WebShop</a>
+
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/products" routerLinkActive="active">
+        Products
+      </a>
+      <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+        <i class="pi pi-shopping-cart"></i>
+        <span>Cart</span>
+      </a>
+    </nav>
+
+    <button pButton type="button" label="Login"></button>
+  </div>
+</header>
