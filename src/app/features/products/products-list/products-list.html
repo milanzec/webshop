@@ -1,5 +1,88 @@
 <section class="products-page">
   <div class="products-header">
+    <div>
+      <span class="eyebrow">Our collection</span>
+      <h1>Products</h1>
+      <p>Browse popular items from our catalog.</p>
+    </div>
+  </div>
+
+  @if (products$ | async; as products) {
+    <div class="products-grid">
+      @for (product of products; track product.id) {
+        <article class="product-card">
+          <div class="product-image-wrapper">
+            <img
+              [src]="product.thumbnail"
+              [alt]="product.title"
+              class="product-image"
+            />
+
+            @if (product.discountPercentage) {
+              <span class="discount-badge">
+                -{{ product.discountPercentage | number:'1.0-0' }}%
+              </span>
+            }
+          </div>
+
+          <div class="product-card-body">
+            <div class="product-top-row">
+              <span class="product-category">{{ product.category }}</span>
+
+              @if (product.brand) {
+                <span class="product-brand">{{ product.brand }}</span>
+              }
+            </div>
+
+            <h3 class="product-title">{{ product.title }}</h3>
+
+            <p class="product-description">
+              {{ product.description }}
+            </p>
+
+            <div class="product-meta">
+              <div class="price-rating">
+                <span class="price">${{ product.price }}</span>
+
+                <span class="rating">
+                  <span class="star">★</span>
+                  {{ product.rating }}
+                </span>
+              </div>
+
+              <span class="stock">
+                Stock: {{ product.stock }}
+              </span>
+            </div>
+
+            <div class="actions">
+              <button
+                pButton
+                type="button"
+                label="Details"
+                severity="secondary"
+                [routerLink]="['/products', product.id]">
+              </button>
+
+              <button
+                pButton
+                type="button"
+                label="Add to cart">
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="loading-state">
+      <p>Loading products...</p>
+    </div>
+  }
+</section>
+
+<!-- <section class="products-page">
+  <div class="products-header">
     <h1>Products</h1>
     <p>Browse our latest collection.</p>
   </div>
@@ -33,4 +116,4 @@
     }
   
   </div>
-</section>
+</section> -->

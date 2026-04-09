@@ -1,20 +1,34 @@
- .products-page {
-  padding: 24px 0;
+.products-page {
+  padding: 32px 0 48px;
 }
 
 .products-header {
-  margin-bottom: 24px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
 
-  h1 {
-    font-size: 2rem;
-    color: #111827;
-    margin-bottom: 8px;
-  }
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2563eb;
+}
 
-  p {
-    color: #6b7280;
-    font-size: 1rem;
-  }
+.products-header h1 {
+  font-size: 2rem;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.products-header p {
+  color: #6b7280;
+  font-size: 1rem;
 }
 
 .products-grid {
@@ -24,60 +38,181 @@
 }
 
 .product-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(17, 24, 39, 0.08);
+}
+
+.product-image-wrapper {
+  position: relative;
+  background: #f8fafc;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .product-image {
   width: 100%;
   height: 220px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
-.product-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  h3 {
-    font-size: 1.1rem;
-    color: #111827;
-  }
-
-  p {
-    color: #6b7280;
-    line-height: 1.5;
-    min-height: 48px;
-  }
+.discount-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
-.product-footer {
+.product-card-body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+  padding: 18px;
+  height: 100%;
+}
+
+.product-top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.product-category,
+.product-brand {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.product-category {
+  background: #dbeafe;
+  color: #1d4ed8;
+  text-transform: capitalize;
+}
+
+.product-brand {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  color: #111827;
+  min-height: 48px;
+}
+
+.product-description {
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  min-height: 70px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.price-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .price {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #111827;
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff7ed;
+  color: #c2410c;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 992px) {
+.star {
+  font-size: 0.9rem;
+}
+
+.stock {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.loading-state {
+  padding: 40px 0;
+}
+
+@media (max-width: 1100px) {
   .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 700px) {
+  .products-page {
+    padding: 24px 0 36px;
+  }
+
+  .products-header h1 {
+    font-size: 1.7rem;
+  }
+
   .products-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-title {
+    min-height: auto;
+  }
+
+  .product-description {
+    min-height: auto;
   }
 }
