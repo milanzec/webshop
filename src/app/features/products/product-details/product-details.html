@@ -1,17 +1,132 @@
 @if (product$ | async; as product) {
-  <section class="product-details">
-    <img [src]="product.thumbnail" [alt]="product.title" class="product-image" />
+  <section class="product-details-page">
+    <div class="product-details-card">
+      <div class="product-gallery">
+        <div class="main-image-wrapper">
+          <img
+            [src]="product.images[0] || product.thumbnail"
+            [alt]="product.title"
+            class="main-image"
+          />
+        </div>
 
-    <div class="product-info">
-      <h1>{{ product.title }}</h1>
-      <p>{{ product.description }}</p>
-      <p><strong>Category:</strong> {{ product.category }}</p>
-      <p><strong>Price:</strong> ${{ product.price }}</p>
-      <p><strong>Rating:</strong> {{ product.rating }}</p>
+        @if (product.images.length) {
+          <div class="thumbnail-list">
+            @for (image of product.images; track image) {
+              <div class="thumbnail-item">
+                <img [src]="image" [alt]="product.title" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="product-summary">
+        <div class="product-top-row">
+          <span class="product-category">{{ product.category }}</span>
+
+          @if (product.brand) {
+            <span class="product-brand">{{ product.brand }}</span>
+          }
+        </div>
+
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+
+        <div class="product-meta-row">
+          <div class="price-block">
+            <span class="current-price">${{ product.price }}</span>
+
+            @if (product.discountPercentage) {
+              <span class="discount-badge">
+                -{{ product.discountPercentage | number:'1.0-0' }}%
+              </span>
+            }
+          </div>
+
+          <div class="rating-block">
+            <span class="rating-star">★</span>
+            <span>{{ product.rating }}</span>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Availability</span>
+            <span class="value status">{{ product.availabilityStatus }}</span>
+          </div>
+
+          <div class="info-item">
+            <span class="label">Stock</span>
+            <span class="value">{{ product.stock }}</span>
+          </div>
+
+          @if (product.shippingInformation) {
+            <div class="info-item">
+              <span class="label">Shipping</span>
+              <span class="value">{{ product.shippingInformation }}</span>
+            </div>
+          }
+
+          @if (product.warrantyInformation) {
+            <div class="info-item">
+              <span class="label">Warranty</span>
+              <span class="value">{{ product.warrantyInformation }}</span>
+            </div>
+          }
+
+          @if (product.returnPolicy) {
+            <div class="info-item">
+              <span class="label">Return policy</span>
+              <span class="value">{{ product.returnPolicy }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="actions">
+          <button pButton type="button" label="Add to cart"></button>
+
+          <button
+            pButton
+            type="button"
+            label="Back to products"
+            severity="secondary"
+            [routerLink]="['/products']">
+          </button>
+        </div>
+      </div>
     </div>
+
+    @if (product.reviews.length) {
+      <section class="reviews-section">
+        <h2>Customer reviews</h2>
+
+        <div class="reviews-list">
+          @for (review of product.reviews; track review.date + review.reviewerEmail) {
+            <div class="review-card">
+              <div class="review-header">
+                <strong>{{ review.reviewerName }}</strong>
+                <span class="review-rating">★ {{ review.rating }}</span>
+              </div>
+
+              <p class="review-comment">{{ review.comment }}</p>
+
+              <span class="review-date">
+                {{ review.date | date:'mediumDate' }}
+              </span>
+            </div>
+          }
+        </div>
+      </section>
+    }
   </section>
 } @else {
-  <p>Loading...</p>
+  <div class="loading-state">
+    <p>Loading product...</p>
+  </div>
 }
 
 

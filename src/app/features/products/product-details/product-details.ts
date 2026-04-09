@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule,ButtonModule],
+  imports: [CommonModule,ButtonModule,RouterLink],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
@@ -20,8 +20,10 @@ export class ProductDetails implements OnInit {
 
 
 
-constructor(    private route: ActivatedRoute,
-    private productService: ProductService){}
+constructor(
+  private route: ActivatedRoute,
+  private productService: ProductService
+){}
 
 ngOnInit(): void {
   const idParam = this.route.snapshot.paramMap.get('id');
