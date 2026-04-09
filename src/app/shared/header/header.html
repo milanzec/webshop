@@ -6,12 +6,20 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Home
       </a>
-      <a routerLink="/products" routerLinkActive="active">
-        Products
-      </a>
+      <a routerLink="/products" routerLinkActive="active"> Products </a>
+      <!-- <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+        <i class="pi pi-shopping-cart"></i>
+        <span>Cart</span>
+      </a> -->
       <a routerLink="/cart" routerLinkActive="active" class="cart-link">
         <i class="pi pi-shopping-cart"></i>
         <span>Cart</span>
+
+        @if (cartCount$ | async; as cartCount) {
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
+        }
       </a>
     </nav>
 

@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../core/services/product';
 import { Product } from '../../../core/models/product';
+import { CartService } from '../../../core/services/cart';
 
 @Component({
   selector: 'app-products-list',
@@ -16,9 +17,16 @@ import { Product } from '../../../core/models/product';
 export class ProductsList {
   products$!: Observable<Product[]>;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+  ) {}
 
   ngOnInit(): void {
     this.products$ = this.productService.getAll();
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 }

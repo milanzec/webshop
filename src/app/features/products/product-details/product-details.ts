@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProductService } from '../../../core/services/product';
 import { Product } from '../../../core/models/product';
+import { CartService } from '../../../core/services/cart';
 
 import { Observable } from 'rxjs';
 
@@ -19,6 +20,7 @@ export class ProductDetails implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -31,5 +33,9 @@ export class ProductDetails implements OnInit {
     const id = Number(idParam);
 
     this.product$ = this.productService.getOneById(id);
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 }

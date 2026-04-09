@@ -12,15 +12,11 @@
       @for (product of products; track product.id) {
         <article class="product-card">
           <div class="product-image-wrapper">
-            <img
-              [src]="product.thumbnail"
-              [alt]="product.title"
-              class="product-image"
-            />
+            <img [src]="product.thumbnail" [alt]="product.title" class="product-image" />
 
             @if (product.discountPercentage) {
               <span class="discount-badge">
-                -{{ product.discountPercentage | number:'1.0-0' }}%
+                -{{ product.discountPercentage | number: '1.0-0' }}%
               </span>
             }
           </div>
@@ -50,9 +46,7 @@
                 </span>
               </div>
 
-              <span class="stock">
-                Stock: {{ product.stock }}
-              </span>
+              <span class="stock"> Stock: {{ product.stock }} </span>
             </div>
 
             <div class="actions">
@@ -61,14 +55,15 @@
                 type="button"
                 label="Details"
                 severity="secondary"
-                [routerLink]="['/products', product.id]">
-              </button>
+                [routerLink]="['/products', product.id]"
+              ></button>
 
               <button
                 pButton
                 type="button"
-                label="Add to cart">
-              </button>
+                label="Add to cart"
+                (click)="addToCart(product)"
+              ></button>
             </div>
           </div>
         </article>

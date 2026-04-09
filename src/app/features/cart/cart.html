@@ -1,4 +1,56 @@
 <section class="cart-page">
   <h1>Shopping Cart</h1>
-  <p>Your cart is currently empty.</p>
+
+  @if (cartItems$ | async; as cartItems) {
+    @if (cartItems.length > 0) {
+      <div class="cart-list">
+        @for (item of cartItems; track item.product.id) {
+          <div class="cart-item">
+            <img
+              [src]="item.product.thumbnail"
+              [alt]="item.product.title"
+              class="cart-item-image"
+            />
+
+            <div class="cart-item-info">
+              <h3>{{ item.product.title }}</h3>
+              <p>${{ item.product.price }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+            </div>
+
+            <div class="cart-item-actions">
+              <button
+                pButton
+                type="button"
+                label="+"
+                (click)="increaseQuantity(item.product.id)"
+              ></button>
+
+              <button
+                pButton
+                type="button"
+                label="-"
+                severity="secondary"
+                (click)="decreaseQuantity(item.product.id)"
+              ></button>
+
+              <button
+                pButton
+                type="button"
+                label="Remove"
+                severity="danger"
+                (click)="removeFromCart(item.product.id)"
+              ></button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="cart-summary">
+        <h2>Total: ${{ getCartTotal() }}</h2>
+      </div>
+    } @else {
+      <p>Your cart is currently empty.</p>
+    }
+  }
 </section>

@@ -42,7 +42,7 @@
 
             @if (product.discountPercentage) {
               <span class="discount-badge">
-                -{{ product.discountPercentage | number:'1.0-0' }}%
+                -{{ product.discountPercentage | number: '1.0-0' }}%
               </span>
             }
           </div>
@@ -87,15 +87,15 @@
         </div>
 
         <div class="actions">
-          <button pButton type="button" label="Add to cart"></button>
+          <button pButton type="button" label="Add to cart" (click)="addToCart(product)"></button>
 
           <button
             pButton
             type="button"
             label="Back to products"
             severity="secondary"
-            [routerLink]="['/products']">
-          </button>
+            [routerLink]="['/products']"
+          ></button>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
               <p class="review-comment">{{ review.comment }}</p>
 
               <span class="review-date">
-                {{ review.date | date:'mediumDate' }}
+                {{ review.date | date: 'mediumDate' }}
               </span>
             </div>
           }
@@ -128,7 +128,6 @@
     <p>Loading product...</p>
   </div>
 }
-
 
 <!-- @if (product$) {
   <section class="product-details">
