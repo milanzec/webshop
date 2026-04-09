@@ -1,8 +1,18 @@
-<h1>DETAILS PAGE RADI</h1>
+@if (product$ | async; as product) {
+  <section class="product-details">
+    <img [src]="product.thumbnail" [alt]="product.title" class="product-image" />
 
-
-<h1>DETAILS PAGE</h1>
-<p>{{ product | json }}</p>
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.description }}</p>
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Price:</strong> ${{ product.price }}</p>
+      <p><strong>Rating:</strong> {{ product.rating }}</p>
+    </div>
+  </section>
+} @else {
+  <p>Loading...</p>
+}
 
 
 <!-- @if (product$) {

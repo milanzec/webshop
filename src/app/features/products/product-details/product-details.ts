@@ -4,18 +4,19 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ProductService } from '../../../core/services/product';
 import { Product } from '../../../core/models/product';
-import { JsonPipe } from '@angular/common';
+
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule,JsonPipe,ButtonModule],
+  imports: [CommonModule,ButtonModule],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
 export class ProductDetails implements OnInit {
 
-    product?: Product;
+    product$!: Observable<Product>
 
 
 
@@ -31,14 +32,6 @@ ngOnInit(): void {
 
   const id = Number(idParam);
 
-  this.productService.getOneById(id).subscribe({
-    next: (product) => {
-      this.product = { ...product };
-      console.log('product loaded:', this.product);
-    },
-    error: (err) => {
-      console.error(err);
-    }
-  });
+this.product$ = this.productService.getOneById(id)
 }
 }
